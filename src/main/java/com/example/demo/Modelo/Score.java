@@ -25,6 +25,12 @@ public class Score {
     private String messageText;
     private Integer stars;
     
+ //Reservation
+    @OneToOne
+    @JsonIgnoreProperties("score")
+    private Reservation reservation;
+    
+    
 //Generamos los getters and setters
 
     public Integer getIdScore() {
@@ -50,12 +56,18 @@ public class Score {
     public void setStars(Integer stars) {
         this.stars = stars;
     }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }
+
+
     
-    //Reservation
-    @OneToOne
-    @JsonIgnoreProperties("score")
-    private Reservation reservation;
-    
+   
     
 }
 

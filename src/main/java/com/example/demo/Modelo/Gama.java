@@ -27,8 +27,14 @@ public class Gama {
     private Integer idGama;
     private String name;
     private String description;
-
     
+//Car
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "gama")
+    @JsonIgnoreProperties("gama")
+
+    private List<Car> cars;
+
+   
 //Generamos los getters and setters 
 
     public Integer getIdGama() {
@@ -38,7 +44,7 @@ public class Gama {
     public void setIdGama(Integer idGama) {
         this.idGama = idGama;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -54,11 +60,17 @@ public class Gama {
     public void setDescription(String description) {
         this.description = description;
     }
-    //Car
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "gama")
-    @JsonIgnoreProperties("gama")
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
+    }
+
+
     
-    private List<Car> cars;
     
   
 

@@ -31,6 +31,23 @@ public class Reservation {
     private Date devolutionDate;
     private String status = "created";
     
+    //Car
+    @ManyToOne
+    @JoinColumn(name = "carId")
+    @JsonIgnoreProperties("reservations")
+    private Car car;
+
+    //Client
+    @ManyToOne
+    @JoinColumn(name = "clientId")
+    @JsonIgnoreProperties({"reservations", "messages"})
+    private Client client;
+
+    //Score
+    @OneToOne
+    @JsonIgnoreProperties("reservation")
+    private Score score;
+
 //Generamos los getters and setters
 
     public Integer getIdReservation() {
@@ -64,23 +81,34 @@ public class Reservation {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Score getScore() {
+        return score;
+    }
+
+    public void setScore(Score score) {
+        this.score = score;
+    }
+
+
     
-    //Car
-    @ManyToOne
-    @JoinColumn(name = "carId")
-    @JsonIgnoreProperties("reservations")
-    private Car car;
-        
-    //Client
-    @ManyToOne
-    @JoinColumn(name = "clientId")
-    @JsonIgnoreProperties({"reservations", "messages"})
-    private Client client;
-    
-    //Score
-    @OneToOne
-    @JsonIgnoreProperties("reservation")
-    private Score score;
+
     
     
     

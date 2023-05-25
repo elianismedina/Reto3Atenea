@@ -30,9 +30,22 @@ public class Car {
     private String brand;
     private Integer year;
     private String description;
-    
-    
-   
+
+//Gama
+    @ManyToOne
+    @JoinColumn(name = "gamaId")
+    @JsonIgnoreProperties("cars")
+    private Gama gama;
+
+//Message
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "car")
+    @JsonIgnoreProperties({"car", "client"})
+    private List<Message> messages;
+
+//Reservation
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "car")
+    @JsonIgnoreProperties({"car", "client"})
+    private List<Reservation> reservations;
 
     public Integer getIdCar() {
         return idCar;
@@ -73,22 +86,34 @@ public class Car {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-//Gama
-    @ManyToOne
-    @JoinColumn(name = "idGama")
-    @JsonIgnoreProperties("cars")
-    private Gama gama;
 
-//Message
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "car")
-    @JsonIgnoreProperties({"car", "client"})
-    private List<Message> messages;
+    public Gama getGama() {
+        return gama;
+    }
 
-//Reservation
-    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "car")
-    @JsonIgnoreProperties({"car", "client"})
-    private List<Reservation> reservations;
+    public void setGama(Gama gama) {
+        this.gama = gama;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+
+
+
     
     
 }
