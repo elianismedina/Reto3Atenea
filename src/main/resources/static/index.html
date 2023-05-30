@@ -8,6 +8,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <title>Reto 3</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <base href="/" />
+        <link
+                rel="stylesheet"
+                type="text/css"
+                href="/webjars/bootstrap/css/bootstrap.min.css"
+        />
+        <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+        <script
+                type="text/javascript"
+                src="/webjars/bootstrap/js/bootstrap.min.js"
+        ></script>
     </head>
     <body>
         <h1>Bienvenido a carros</h1>
@@ -16,7 +27,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </div>
         <div class="container authenticated" style="display: none">
             Has sido autenticado: <span id="usuario"></span>
+            <a href="./homePage.html">IR A LOS RETOS 03, 04 y 05</a><BR></BR>
             <button onclick="location.href='homePage.html';">Continuar</button>
+            <button onClick="logout()" class="btn btn-primary">Logout</button>
         </div>
     </body>
     <script type="text/javascript">
@@ -28,4 +41,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         });
 
     </script>
+    <script type="text/javascript">
+    var logout = function () {
+      $.post("/logout", function () {
+        $("#user").html("");
+        $(".unauthenticated").show();
+        $(".authenticated").hide();
+      });
+      return true;
+    };
+  </script>
 </html>
