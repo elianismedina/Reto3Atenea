@@ -6,10 +6,11 @@ package com.example.demo.Servicio;
 
 import com.example.demo.Modelo.Client;
 import com.example.demo.Repositorio.ClientRepository;
-import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -58,8 +59,8 @@ public class ClientService {
                 if (client.getName()!=null) {
                     clientEncontrado.get().setName(client.getName());                    
                 }
-                if (client.getName()!=null) {
-                    clientEncontrado.get().setName(client.getName());                    
+                if (client.getAge()!=null) {
+                    clientEncontrado.get().setAge(client.getAge());
                 }
                 return clientRepository.save(clientEncontrado.get());
                 
