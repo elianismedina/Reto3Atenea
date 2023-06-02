@@ -4,14 +4,11 @@
  */
 package com.example.demo.Repositorio;
 
-import com.example.demo.Modelo.Client;
-import com.example.demo.Modelo.DTOs.TotalAndClient;
 import com.example.demo.Modelo.Reservation;
 import com.example.demo.Repositorio.CRUD.ReservationCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -56,16 +53,8 @@ public class ReservationRepository {
         return reservationCrudRepository.findAllByStatus(status);
     }
 
-    public List<TotalAndClient> getTopClients(){
-        List<TotalAndClient> respuesta = new ArrayList<>();
-        List<Object[]> reporte = reservationCrudRepository.getTotalReservationsByClient();
-
-        for (Object[] pareja: reporte
-             ) {
-            respuesta.add(new TotalAndClient((Long) pareja[1],(Client) pareja[0]));
-            
-        }
-        return respuesta;
+    public  List<Object[]> getTotalReservationsByClient(){
+        return reservationCrudRepository.getTotalReservationsByClient();
     }
 
     
